@@ -27,7 +27,7 @@ namespace ComicRackWebViewer
             }
             return new List
             {
-                Comics = context.ApplyODataUriFilter(list.GetBooks().Select(x => x.ToComic())),
+                Comics = context.ApplyODataUriFilter(list.GetBooks().Select(x => x.ToComic())).Cast<Comic>(),
                 Name = name
             };
         }
@@ -37,7 +37,7 @@ namespace ComicRackWebViewer
             return Plugin.Application.GetLibraryBooks().AsSeries();
         }
 
-        public static List GetSeries(Guid id)
+        public static List GetSeries(Guid id, NancyContext context)
         {
             var books = Plugin.Application.GetLibraryBooks();
             var book = books.Where(x => x.Id == id).First();
@@ -47,7 +47,7 @@ namespace ComicRackWebViewer
                 .OrderBy(x => x.Number).ToList();
             return new List
             {
-                Comics = series,
+                Comics = context.ApplyODataUriFilter(series).Cast<Comic>(),
                 Name = book.Series
             };
         }

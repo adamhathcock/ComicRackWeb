@@ -50,7 +50,8 @@
     <Reference Include="cYo.Common">
       <HintPath>..\..\..\Program Files\ComicRack\cYo.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Linq2Rest">
+    <Reference Include="Linq2Rest, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Linq2Rest.2.1.0.0\lib\Net40\Linq2Rest.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -61,6 +62,10 @@
     <Reference Include="Nancy.Hosting.Self, Version=0.11.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Nancy.Hosting.Self.0.11.0\lib\net40\Nancy.Hosting.Self.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.OData, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Nancy.OData.1.0.2\lib\net40\Nancy.OData.dll</HintPath>
     </Reference>
     <Reference Include="Nancy.ViewEngines.Razor, Version=0.11.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -190,12 +195,6 @@
     <Content Include="Views\styling.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Nancy.OData\Nancy.OData\Nancy.OData.csproj">
-      <Project>{630ab0d8-214b-4622-a8bd-9fd96c8b934d}</Project>
-      <Name>Nancy.OData</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

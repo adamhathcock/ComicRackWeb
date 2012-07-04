@@ -14,7 +14,7 @@ namespace ComicRackWebViewer
             Get["/{id}"] = parameters =>
             {
                 var id = new Guid(parameters.id);
-                return View["IssuesList.cshtml", API.GetSeries(id)];
+                return View["IssuesList.cshtml", API.GetSeries(id, Context)];
             };
         }
     }
