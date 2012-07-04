@@ -1,0 +1,47 @@
+body 
+{
+  
+	border-style: none;
+  
+	background: #999999;
+
+        font-size: 1em;
+	font-family: Verdana;
+
+	color: #000000;
+}
+
+table
+{
+	border-style: hidden;
+
+	border-width: 0px;
+
+	padding-top: 0px;
+
+	margin-top: 0%;
+
+	top: 0%;
+
+	width: 100%;
+}
+
+th, a, .letter-header
+{
+	font-size: 20px;
+
+	font-weight: bold;
+
+	font-family: Verdana;
+
+	background-color: #000000;
+ 
+	text-align: center;
+
+	color: #ffcc00;
+  
+  cursor: pointer;
+}	
+
+td
+{background: #cccccc;}

@@ -1,0 +1,67 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IEnumerable<string>>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link  rel="stylesheet" href="/Comics/js/add2home.css"> 
+    <link  rel="apple-touch-icon" href="/Comics/js/CRLogo.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <script type="application/javascript" src="/Comics/js/add2home.js"></script>
+    <title>ComicRack</title>
+    <link rel="stylesheet" href="/Comics/js/styling.css" type="text/css">
+</head>
+
+<body >
+
+	<div style="text-align: center; background-color: rgb(0, 0, 0);"><br>
+		<img style="width: 384px; height: 86px;" alt="CRLogo"
+ 		src="/Comics/js/logo.png"
+ 		align="middle">
+		<br><br>
+	</div>
+
+<br><br>
+
+
+<table>
+    <th>
+	BROWSE
+    </th>
+</table>
+
+<table style="width: 100%; text-align: center; margin-left: auto; margin-right: auto;">
+    <tr>
+      <td style="width: 50%;"><div onclick="window.location='/Publishers/';">BROWSE BY PUBLISHER</div></td>
+      <td style="width: 50%;"><div onclick="window.location='/Series/';">BROWSE BY SERIES</div></td>
+    </tr>
+</table>
+
+<br><br>
+
+        @if (@Model.Any())
+        { 
+		<table>
+		<th>
+			SMARTLISTS
+    		</th>	
+		</table>
+ 	}
+	
+	<table style="width: 100%; text-align: center; margin-left: auto; margin-right: auto;">     
+
+	  @for (int i = 0; i < @Model.Count(); i=i+2)
+         { 
+            <tr>
+                <td style="width:50%">
+                   <div onclick="window.location='/Lists/@Model.ElementAt(i)';">@Model.ElementAt(i)</div>
+                </td>
+                @if (i < @Model.Count()-1){
+				<td style="width:50%">
+                   <div onclick="window.location='/Lists/@Model.ElementAt(i+1)';">@Model.ElementAt(i+1)</div>
+                </td>}
+            </tr>
+    	}</table>
+</body>
+</html>

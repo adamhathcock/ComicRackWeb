@@ -1,0 +1,89 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<ComicRackWebViewer.List>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <title></title>
+    <link rel="stylesheet" href="/Comics/js/styling.css" type="text/css">
+
+	<!-- This script shows/hides the corresponding object -->
+	<script type="text/javascript">
+		function dispHandle(obj) 
+		{
+			if (obj.style.display == "none")
+			obj.style.display = "";
+			else
+			obj.style.display = "none";
+		}
+	</script>
+</head>
+
+<body>
+
+<!-- Fixed header + back button -->
+<div>
+	<table style="border-spacing:0px;">	
+	<tr>	
+	<th style="text-align: left;background-color: rgb(0, 0, 0);color: #ffcc00;"">
+		<img style="width: 230px;" alt="CRLogo"
+ 		src="/Comics/js/logo.png"
+ 		align="middle"></th>
+	<th style="text-align:center">ISSUES LISTING</th>
+	<td style="text-align:center" onclick="history.back(-1)">Back</td>
+	</tr>
+	</table>
+</div>
+
+<!-- Scrolling web contents -->
+
+<br>
+    <table>
+		<tr>
+			<th style="font-size:small">info</th>
+			<th style="font-size:small"><div onclick="window.location='/Lists/@Model.Name/?$orderby=Series';">Up</div> series <div onclick="window.location='/Lists/@Model.Name/?$orderby=Series desc';">Down</div></th>
+			<th style="font-size:small"><div onclick="window.location='/Lists/@Model.Name/?$orderby=Number';">Up</div> issue # <div onclick="window.location='/Lists/@Model.Name/?$orderby=Number desc';">Down</div></th>
+			<th style="font-size:small"><div onclick="window.location='/Lists/@Model.Name/?$orderby=Title';">Up</div> title <div onclick="window.location='/Lists/@Model.Name/?$orderby=Title desc';">Down</div></th>
+			<th style="font-size:small"><div onclick="window.location='/Lists/@Model.Name/?$orderby=Date';">Up</div> date <div onclick="window.location='/Lists/@Model.Name/?$orderby=Date desc';">Down</div></th>
+		</tr>
+		<tr></tr>
+        @foreach (var item in @Model.Comics)
+        {
+            <tr>
+				<th width=50px style="font-size:small" onclick="window.location='/Comics/Metadata/@item.Id/';">info</th>
+                <td>
+                    <div onclick="window.location='/Comics/@item.Id/';">@item.Series  (@item.Volume)&nbsp&nbsp</div>
+                </td>
+                <td align=center>
+                    <div onclick="window.location='/Comics/@item.Id/';">&nbsp&nbsp @item.Number &nbsp&nbsp</div>
+                </td>
+                <td>
+                    <div onclick="window.location='/Comics/@item.Id/';">&nbsp&nbsp @item.Title</div>
+                </td>
+				<td width=150px align=center><div>[@item.Month / @item.Year]</div></td>
+                
+                </td>
+                
+            </tr>
+        }
+    </table>
+	
+<br>
+<div>	
+	<table style="border-spacing:0px;">	
+	<tr>	
+	<th style="text-align: left;background-color: rgb(0, 0, 0);color: #ffcc00;"">
+		<img style="width: 230px;" alt="CRLogo"
+ 		src="/Comics/js/logo.png"
+ 		align="middle"></th>
+	<th style="text-align:center">ISSUES LISTING</th>
+	<td style="text-align:center" onclick="history.back(-1)">Back</td>
+	</tr><table>
+</div>
+
+</body>	
+	
+</body>
+</html>

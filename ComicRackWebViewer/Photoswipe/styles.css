@@ -1,0 +1,9 @@
+body { padding: 0; margin: 0; background: #000000; font-family: "Lucida Grande", Helvetica, Arial,Verdana, sans-serif;}
+
+.gallery { list-style: none; padding: 0; margin: 0; }
+.gallery:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+.gallery li { float: left; height: 200px; text-align: center; margin-bottom: 70px;}
+.gallery li a { display: block; margin: 15px; border: 10px solid #fff; background-color: #ffffff; text-decoration: none; color: black}
+.gallery li img { display: block; height: 100%; width: auto; }
+.gallery li .caption { display: block; background-color: #ffffff; width: auto;}
+

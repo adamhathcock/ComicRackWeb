@@ -1,0 +1,38 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<ComicRackWebViewer.Comic>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
+        name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <link href="/Comics/css/photoswipe.css" type="text/css" rel="stylesheet" />
+    <link href="/Comics/css/styles.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/Comics/js/klass.min.js"></script>
+    <script type="text/javascript" src="/Comics/js/code.photoswipe-3.0.4.min.js"></script>
+    <script type="text/javascript">
+    (function (window, PhotoSwipe) {
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var instance = PhotoSwipe.attach(window.document.querySelectorAll('#Gallery a'), { enableMouseWheel: false, loop: false });
+
+        }, false);
+
+
+    }(window, window.Code.PhotoSwipe));
+
+    </script>
+    <title>@Model.Title - @Model.Number</title>
+</head>
+<body>
+    <input type="button" value="Back" onclick="history.back(-1)" style="width: 100px; height: 50px" />
+    <ul id="Gallery" class="gallery">
+        @for (int i = 0; i < Model.PageCount; i++)
+        {
+            <li><a href="/Comics/Image/@Model.Id/@i/">
+                <img src="/Comics/Thumbnail/@Model.Id/@i/">Page @i</a></li>
+        }
+    </ul>
+    <input type="button" value="Back" onclick="history.back(-1)" style="width: 100px; height: 50px" />
+</body>
+</html>

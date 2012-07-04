@@ -1,0 +1,70 @@
+﻿<Window x:Class="ComicRackWebViewer.WebServicePanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Title="Comic Rack Web Service"
+        SizeToContent="WidthAndHeight"
+        MinWidth="400"
+        MaxWidth="400"
+        MinHeight="170">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <CheckBox x:Name="bindAll"
+                  Content="Bind to all Local IPs"
+                  Grid.Column="1"
+                  Checked="CheckBox_Checked_1"
+                  Unchecked="bindAll_Unchecked_1"
+                  VerticalAlignment="Center" />
+        <TextBlock Text="Address to Bind to:"
+                   Margin="5"
+                   Grid.Row="1"
+                   TextAlignment="Right"
+                   VerticalAlignment="Center" />
+        <TextBox Grid.Column="1"
+                 Grid.Row="1"
+                 Text="127.0.0.1"
+                 Margin="5"
+                 x:Name="addressTextBox"
+                 VerticalAlignment="Center" />
+        <TextBlock Text="Port to Bind to:"
+                   Grid.Row="2"
+                   Margin="5"
+                   TextAlignment="Right"
+                   VerticalAlignment="Center" />
+        <TextBox Grid.Column="1"
+                 Grid.Row="2"
+                 Text="8080"
+                 Margin="5"
+                 x:Name="portTextBox"
+                 TextChanged="portTextBox_TextChanged"
+                 VerticalAlignment="Center" />
+        <Button Grid.Row="3"
+                Margin="5"
+                x:Name="startServiceButton"
+                Content="Start"
+                Click="startServiceButton_Click" />
+        <Button Grid.Column="1"
+                Margin="5"
+                x:Name="stopServiceButton"
+                Content="Stop"
+                Click="stopServiceButton_Click"
+                Grid.Row="3" />
+        <TextBlock x:Name="Status"
+                   Grid.Row="4"
+                   Grid.ColumnSpan="2"
+                   Margin="5"
+                   TextWrapping="Wrap" />
+    </Grid>
+</Window>

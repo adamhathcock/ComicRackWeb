@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+  <meta content="text/html; charset=us-ascii" http-equiv="content-type">
+
+  <title>ComicInfoPanel 0.5</title>
+  <style type="text/css">
+    pre.notes {width: 600px; font-family: Calibri;
+			font-size: medium;
+			white-space: pre-wrap; /* css-3 */
+			word-wrap: break-word; /* Internet Explorer 5.5+ */
+			}
+	body.c21 {width: 700px; font-family: Calibri}
+	table.c20 {text-align: left; width: 687px;}
+	table.c22 {text-align: justify; vertical-align: top; width: 675px;}
+	table.c18 {text-align: left; vertical-align: top; width: 288px; height: 135px;}
+	table.c17 {text-align: left; vertical-align: top; width: 300px;}
+	table.c3 {text-align: left; width: 659px}
+	td.c19 {width: 300px;vertical-align: top;}
+	td.c16 {width: 210px;vertical-align: top;}
+	td.c15 {width: 90px;vertical-align: top;}
+	td.c14 {width: 150x;text-align:right;}
+	td.c13 {width: 150px;text-align: left;}
+	td.c10 {width: 309px;vertical-align: top;}
+	td.c2 {width: 421px; text-align: left;}
+	td.c23 {vertical-align:top;}
+	div.c9 {text-align: justify; width: 319px;}
+	div.c8 {text-align: justify;}
+	div.c7 {text-align: center;}
+	img.c6 {width: 283px; height: 430px;}
+	span.c5 {border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Arial'; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px}
+	span.c4 {font-family: Calibri; font-style: italic; font-weight: bold;}
+	span.c1 {font-family: Calibri; font-weight: bold;}
+  </style>
+</head>
+
+<body class="c21">
+  <big><span class="c1"><big>@Model.Series (@Model.Volume)
+  &nbsp;&nbsp;&nbsp; @Model.Number
+  <br></big></span></big>
+
+  <table class="c3" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="c2"><big><span class="c1"><small><big>
+		&nbsp;(@Model.AlternateSeries @Model.AlternateCount)
+		</big></small></span></big></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="c8">
+    <table class="c20" border="0" cellpadding="10" cellspacing="0">
+      <tbody>
+        <tr>
+          <td class="c10">
+            <div class="c9">
+              <span class="c4">
+			  @Model.Title
+			  </span><br>
+
+              <div class="c8">
+                <br>
+                <span class="c5">
+				@Model.Summary
+				</span><br><br>
+
+               <div class="c7"><img src="/Comics/Image/@Model.Id/0" class=
+                "c6" alt="Cover"></div>
+              </div>
+            </div>
+          </td>
+
+          <td class="c19">
+            <span>
+			@Model.Publisher (@Model.Imprint),
+            @Model.Month/@Model.Year
+			</span>
+			<br><span class="c11">
+			@Model.Format
+			</span>
+			<hr>
+
+            <table class="c17" border="0" cellpadding="0" cellspacing="6">
+              <tbody>
+                <tr>
+                  <td class="c15">Rating:</td>
+                  <td class="c16">@Model.Rating</td>
+	            </tr>
+			  </tbody>
+			</table>  
+            <table class="c17" border="0" cellpadding="0" cellspacing="6">
+              <tbody>
+                <tr>
+                  <td class="c15">&nbsp;</td>
+                  <td class="c16">&nbsp;</td>
+                </tr>
+              </tbody>
+
+              <tbody>
+                <tr>
+                  <td class="c15">Writer:</td>
+                  <td class="c16">@Model.Writer</td>
+                </tr>
+
+                <tr>
+                  <td class="c15">Penciller:</td>
+                  <td class="c16">@Model.Penciller</td>
+                </tr>
+
+                <tr>
+                  <td class="c15">Inker:</td>
+                  <td class="c16">@Model.Inker</td>
+                </tr>
+
+                <tr>
+                  <td class="c15">Colorist:</td>
+                  <td class="c16">@Model.Colorist</td>
+                </tr>
+
+                <tr>
+                  <td class="c15">Letterer:</td>
+                  <td class="c16">@Model.Letterer</td>
+                </tr>
+
+                <tr>
+                  <td class="c15">Cover Artist:</td>
+                  <td class="c16">@Model.CoverArtist</td>
+                </tr>
+
+                <tr>
+                  <td class="c15">Editor:</td>
+                  <td class="c16">@Model.Editor</td>
+                </tr>
+              </tbody>
+            </table>
+            <hr>
+
+            <table class="c17" border="0" cellpadding="0"
+            cellspacing="6">
+              <tbody>
+                <tr>
+                  <td class="c15">Genre:</td>
+                  <td class="c16">@Model.Genre</td>
+                </tr>
+
+                <tr>
+                  <td class="c15">Tags:</td>
+                  <td class="c16">@Model.Tags</td>
+                </tr>
+
+                <tr>
+                  <td class="c15">Characters:</td>
+                  <td class="c16">@Model.Characters</td>
+                </tr>
+
+                <tr>
+                  <td class="c15">Teams:</td>
+                  <td class="c16">@Model.Teams</td>
+                </tr>
+
+                <tr>
+                  <td class="c15">Locations:</td>
+                  <td class="c16">@Model.Locations</td>
+                </tr>
+                  
+                <tr>
+                  <td class="c15">Scan Information:</td>
+                  <td class="c16">@Model.ScanInfo</td>
+                </tr>
+              <tr>
+                  <td class="c15"><a>@Model.Web</a></td>
+                </tr>
+              </tbody>
+            </table>
+            <hr>
+            <span class=c5"><br></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+	<div class="c8">
+		<table class="c22" border="0" cellpadding="20" cellspacing="0">
+			<tbody>
+				<tr><td class="c23">
+				Notes:
+				</td><td class="c23">
+				@Model.Notes
+				</td></tr>
+			</tbody>
+		</table>	
+	</div>
+</div>
+
+<br>
+<div>	
+	<table style="border-spacing:0px;" width=100%>	
+	<tr>	
+	<th style="text-align: left;background-color: rgb(0, 0, 0);color: #ffcc00;"">
+		<img style="width: 230px;" alt="CRLogo"
+ 		src="/Comics/js/logo.png"
+ 		align="middle"></th>
+	<th style="text-align:center">ISSUE DETAILS</th>
+	<td style="text-align:center; background-color:#999999" onclick="history.back(-1)">BACK</td>
+	</tr><table>
+</div>
+</body>
+</html>

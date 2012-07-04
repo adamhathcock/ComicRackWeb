@@ -1,0 +1,169 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.IEnumerable<ComicRackWebViewer.Publisher>>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <title>Publishers List</title>
+    <link rel="stylesheet" href="/Comics/js/styling.css" type="text/css">
+    <script type="text/javascript" src="/Comics/js/jquery-1.7.1.min.js"></script>
+    <!-- This script shows/hides the corresponding object -->
+    <script type="text/javascript">
+    $(function () {
+    
+      // Remove empty letters
+      $(".letter-body").each(function() { 
+        if($(this).children().length < 1)  {
+          $(this).prev().remove();
+          $(this).remove();
+        }
+      });
+      
+    // hide all inital letters
+    $(".letter-header").next().hide();
+    
+    // The function for toggling the groups
+    $(".letter-header").click(function () {
+      $(this).next().slideToggle('fast');
+      });
+    })
+    </script>
+</head>
+<body>
+    <!-- Fixed header + back button -->
+    <div>
+        <table style="border-spacing: 0px;">
+            <tr>
+                <th style="text-align: left; background-color: rgb(0, 0, 0); color: #ffcc00;">
+                    <img style="width: 230px;" alt="CRLogo" src="/Comics/js/logo.png" align="middle">
+                </th>
+                <th style="text-align: center">PUBLISHERS LISTING</th>
+                <td style="text-align: center" onclick="history.back(-1)">Back</td>
+            </tr>
+        </table>
+    </div>
+    <!-- Scrolling web contents -->
+    <br>
+    @{
+        var LetterList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	
+        <!-- Loop for Publishers in A-Z -->
+        @for (int i = 0; i < 26; i = i + 1)
+        {
+            <!-- The Letter Header element -->
+            <div class="letter-header" style="margin-top: 5px;">@LetterList.ElementAt(i)</div>
+            <!-- I make a separate table for each line to add spacing between rows -->			
+            <div id="@LetterList.ElementAt(i)" class="letter-body">
+            @foreach (var item in @Model)
+            {
+                @if (!string.IsNullOrEmpty(item.Name) && (item.Name.ElementAt(0) == @LetterList.ElementAt(i)))
+                {
+                    <table>
+                    @if (!string.IsNullOrEmpty(item.Imprint))
+                    {
+                        <!-- If there is imprint -->
+                        <tr> <table cellpadding="0" cellspacing="0" width="100%"> <tr onclick="window.location='/Publishers/@item.Name/@item.Imprint/';">
+                        <td align="center" width="100px" height="66px"> <img src="/Publishers/@item.Name/Icon"/> </td>
+                        <td align="center" width="100px" height="66px"> <img src="/Publishers/@item.Imprint/Icon"/> </td>
+                        <td> <div>@item.Name - @item.Imprint</div> </td> </tr> </table> </tr>
+                    }
+                    @if (string.IsNullOrEmpty(item.Imprint))
+                    {
+                        <!-- If there is no imprint -->
+                        <tr> <table cellpadding="0" cellspacing="0" width="100%"> <tr onclick="window.location='/Publishers/@item.Name/';">
+                        <td align="center" width="100px" height="66px"> <img src="/Publishers/@item.Name/Icon"/> </td>
+                        <td align="center" width="100px" height="66px"> </td> <td> <div>@item.Name</div> </td> </tr>
+                    </table> </tr>
+                    }
+                </table>
+                }
+            }
+        </div>
+        }
+	
+        <!-- Now, add those Publishers starting by a number, a symbol, and comics with no Publisher -->
+        <div class="letter-header" style="margin-top: 5px;">0-9</div>
+
+        <div id="number" class="letter-body">
+            @foreach (var item in @Model)
+            {
+                @if (!string.IsNullOrEmpty(item.Name) && "0123456789".IndexOf(item.Name.ElementAt(0)) != -1)
+                {
+                    <table>
+                    @if (!string.IsNullOrEmpty(item.Imprint))
+                    {
+                        <!-- If there is imprint -->
+			
+                        <tr> <table cellpadding="0" cellspacing="0" width="100%"> <tr onclick="window.location='/Publishers/@item.Name/@item.Imprint/';">
+                        <td align="center" width="100px"> <img src="/Publishers/@item.Name/Icon"/> </td>
+                        <td align="center" width="100px"> <img src="/Publishers/@item.Imprint/Icon"/> </td>
+                        <td> <div>@item.Name - @item.Imprint</div> </td> </tr> </table> </tr>
+                    }
+                    @if (string.IsNullOrEmpty(item.Imprint))
+                    {
+                        <!-- If there is no imprint -->
+                        <tr> <table cellpadding="0" cellspacing="0" width="100%"> <tr onclick="window.location='/Publishers/@item.Name/';">
+                        <td align="center" width="100px"> <img src="/Publishers/@item.Name/Icon"/> </td>
+                        <td align="center" width="100px"> </td> <td> <div>@item.Name</div> </td> </tr>
+                    </table> </tr>
+                    }
+                </table>
+                }
+            }
+        </div>
+
+	
+	
+        <!-- Publishers starting with symbols -->
+        <div class="letter-header" style="margin-top: 5px;">!</div>
+        <div id="symbol" class="letter-body">
+            @foreach (var item in @Model)
+            { 
+                @if (!string.IsNullOrEmpty(item.Name) && "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".IndexOf(item.Name.ElementAt(0)) == -1)
+                {
+                    <table>
+                    @if (!string.IsNullOrEmpty(item.Imprint))
+                    {
+                        <!-- If there is imprint -->
+                        <tr> <table cellpadding="0" cellspacing="0" width="100%"> <tr onclick="window.location='/Publishers/@item.Name/@item.Imprint/';">
+                        <td align="center" width="100px"> <img src="/Publishers/@item.Name/Icon"/> </td>
+                        <td align="center" width="100px"> <img src="/Publishers/@item.Imprint/Icon"/> </td>
+                        <td> <div>@item.Name - @item.Imprint</div> </td> </tr> </table> </tr>
+                    }
+                    @if (string.IsNullOrEmpty(item.Imprint))
+                    {
+                        <tr> <table cellpadding="0" cellspacing="0" width="100%"> <tr onclick="window.location='/Publishers/@item.Name/';">
+                        <td align="center" width="100px"> <img src="/Publishers/@item.Name/Icon"/> </td>
+                        <td align="center" width="100px"> &nbsp </td> <td> <div>@item.Name</div> </td>
+                    </tr> </table> </tr>
+                    }
+                </table>
+                }
+            }
+        </div>
+	
+	
+        <!-- No pulbisher -->
+	
+        <div style="margin-top: 5px;">
+          <a href="/Publishers/No Publisher/" style="display: block; text-decoration: none;">no publisher</a>
+        </div>
+	
+	
+    }
+    <br>
+    <div>
+        <table style="border-spacing: 0px;">
+            <tr>
+                <th style="text-align: left; background-color: rgb(0, 0, 0); color: #ffcc00;">
+                    <img style="width: 230px;" alt="CRLogo" src="/Comics/js/logo.png" align="middle">
+                </th>
+                <th style="text-align: center">PUBLISHERS LISTING</th>
+                <td style="text-align: center" onclick="history.back(-1)">Back</td>
+            </tr>
+            <table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+*.suo
+ComicRackWebViewer/bin/Debug/
+ComicRackWebViewer/bin/
+ComicRackWebViewer/obj/
+*.crplugin
+*.user
+packages/
