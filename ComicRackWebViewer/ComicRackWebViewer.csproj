@@ -13,7 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -39,16 +40,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ComicRack">
-      <HintPath>..\..\..\Program Files\ComicRack\ComicRack.exe</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\ComicRack\ComicRack.exe</HintPath>
     </Reference>
     <Reference Include="ComicRack.Engine">
-      <HintPath>..\..\..\Program Files\ComicRack\ComicRack.Engine.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\ComicRack\ComicRack.Engine.dll</HintPath>
     </Reference>
     <Reference Include="ComicRack.Plugins">
-      <HintPath>..\..\..\Program Files\ComicRack\ComicRack.Plugins.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\ComicRack\ComicRack.Plugins.dll</HintPath>
     </Reference>
     <Reference Include="cYo.Common">
-      <HintPath>..\..\..\Program Files\ComicRack\cYo.Common.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\ComicRack\cYo.Common.dll</HintPath>
     </Reference>
     <Reference Include="Linq2Rest, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
