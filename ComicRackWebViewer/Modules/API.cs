@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using cYo.Projects.ComicRack.Engine;
+using cYo.Projects.ComicRack.Engine.Database;
 using cYo.Projects.ComicRack.Engine.IO.Provider;
 using cYo.Projects.ComicRack.Viewer;
 using Nancy;
@@ -14,9 +15,33 @@ namespace ComicRackWebViewer
 {
     public static class API
     {
+        public static IEnumerable<string> GetAllLists()
+        {
+            return GetLists(Program.Database.ComicLists).Select(x=> x.Name).OrderBy(c => c);
+        }
+
+        private static IEnumerable<ComicListItem> GetLists(ComicListItemCollection lists)
+        {
+            foreach (var item in lists)
+            {
+                var folder = item as ComicListItemFolder;
+                if (folder != null)
+                {
+                    foreach (var childName in GetLists(folder.Items))
+                    {
+                        yield return childName;
+                    }
+                }
+                else
+                {
+                    yield return item;
+                }
+            }
+        }
+
         public static List GetIssuesOfList(string name, NancyContext context)
         {
-            var list = Program.Database.ComicLists.FirstOrDefault(x => x.Name == name);
+            var list = GetLists(Program.Database.ComicLists).FirstOrDefault(x => x.Name == name);
             if (list == null)
             {
                 return new List

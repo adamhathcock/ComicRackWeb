@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using cYo.Projects.ComicRack.Viewer;
-using Nancy;
+﻿using Nancy;
 
 namespace ComicRackWebViewer
 {
@@ -9,7 +7,7 @@ namespace ComicRackWebViewer
         public IndexModule()
             : base("/")
         {
-            Get["/"] = x => View["Index.cshtml", Program.Database.ComicLists.Select(c => c.Name).OrderBy(c => c)];
+            Get["/"] = x => View["Index.cshtml", API.GetAllLists()];
         }
     }
 }
