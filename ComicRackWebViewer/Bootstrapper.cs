@@ -4,9 +4,8 @@ using System.IO;
 using System.Reflection;
 using Nancy;
 using Nancy.Bootstrapper;
+using Nancy.TinyIoc;
 using Nancy.ViewEngines.Razor;
-using TinyIoC;
-
 namespace ComicRackWebViewer
 {
     public class Bootstrapper : DefaultNancyBootstrapper
@@ -14,7 +13,6 @@ namespace ComicRackWebViewer
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
             base.ApplicationStartup(container, pipelines);
-            StaticConfiguration.DisableCaches = true;
             container.Register<IRazorConfiguration, RazorConfiguration>().AsSingleton();
             container.Register<RazorViewEngine>();
             container.Register<IRootPathProvider, RootPathProvider>().AsSingleton();
@@ -39,26 +37,26 @@ namespace ComicRackWebViewer
             container.AutoRegister(new List<Assembly>() { typeof(Bootstrapper).Assembly, typeof(RazorViewEngine).Assembly });
         }
 
-        private ModuleRegistration CreateRegistration<Tmodule>()
+        private ModuleRegistration CreateRegistration<TModule>()
         {
-            Type t = typeof(Tmodule);
-            return new ModuleRegistration(t, this.GetModuleKeyGenerator().GetKeyForModuleType(t));
+            Type t = typeof(TModule);
+            return new ModuleRegistration(t);
         }
     }
 
     public class RootPathProvider : IRootPathProvider
     {
-        private readonly string BASE_PATH;
+        private readonly string basePath;
 
         public RootPathProvider()
         {
             var path = typeof(Bootstrapper).Assembly.Location;
-            BASE_PATH = path.Substring(0, path.Length - Path.GetFileName(path).Length);
+            basePath = path.Substring(0, path.Length - Path.GetFileName(path).Length);
         }
 
         public string GetRootPath()
         {
-            return BASE_PATH;
+            return basePath;
         }
     }
 
