@@ -14,7 +14,7 @@ namespace ComicRackWebViewer
         public ComicsModule()
             : base("/Comics")
         {
-            Get["/{id}"] = p =>
+            Get["/{id*}"] = p =>
                 {
                     string id = p.id;
 
