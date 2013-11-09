@@ -15,7 +15,15 @@ namespace ComicRackWebViewer
             base.ApplicationStartup(container, pipelines);
             container.Register<IRazorConfiguration, RazorConfiguration>().AsSingleton();
             container.Register<RazorViewEngine>();
-            container.Register<IRootPathProvider, RootPathProvider>().AsSingleton();
+            //container.Register<IRootPathProvider, RootPathProvider>().AsSingleton();
+        }
+
+        protected override IRootPathProvider RootPathProvider
+        {
+            get
+            {
+                return new RootPathProvider();
+            }
         }
 
         protected override IEnumerable<ModuleRegistration> Modules

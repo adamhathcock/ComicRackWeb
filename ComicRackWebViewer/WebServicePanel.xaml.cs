@@ -18,8 +18,8 @@ namespace ComicRackWebViewer
     /// </summary>
     public partial class WebServicePanel : Window
     {
-        private static ManualResetEvent mre = new ManualResetEvent(false);
-        private static NancyHost host;
+        private static readonly ManualResetEvent mre = new ManualResetEvent(false);
+        private static NancyHost HOST;
         private int? actualPort;
         private string address;
 
@@ -33,7 +33,7 @@ namespace ComicRackWebViewer
             bindAll.IsChecked = bool.Parse(Settings.GetSetting("bindAll") ?? "false");
         }
 
-        private void portTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void PortTextBoxTextChanged(object sender, TextChangedEventArgs e)
         {
             if (string.IsNullOrEmpty(portTextBox.Text))
             {
@@ -57,14 +57,14 @@ namespace ComicRackWebViewer
             {
                 return;
             }
-            startServiceButton.IsEnabled = actualPort.HasValue && host == null;
-            stopServiceButton.IsEnabled = host != null;
-            portTextBox.IsEnabled = host == null;
+            startServiceButton.IsEnabled = actualPort.HasValue && HOST == null;
+            stopServiceButton.IsEnabled = HOST != null;
+            portTextBox.IsEnabled = HOST == null;
             if (!bindAll.IsChecked ?? false)
             {
-                addressTextBox.IsEnabled = host == null;
+                addressTextBox.IsEnabled = HOST == null;
             }
-            if (host == null)
+            if (HOST == null)
             {
                 Status.Text = "Stopped";
             }
@@ -93,20 +93,20 @@ namespace ComicRackWebViewer
 
         public void LoadService(bool bindAll)
         {
-            if (host != null)
+            if (HOST != null)
             {
                 StopService();
             }
 
-            host = new NancyHost(new Bootstrapper(), GetUris(bindAll).ToArray());
+            HOST = new NancyHost(new Bootstrapper(), GetUris(bindAll).ToArray());
             try
             {
-                host.Start();
+                HOST.Start();
                 this.Dispatcher.Invoke(new Action(SetEnabledState));
                 mre.Reset();
                 mre.WaitOne();
 
-                host.Stop();
+                HOST.Stop();
             }
             catch (Exception)
             {
@@ -116,7 +116,7 @@ namespace ComicRackWebViewer
             }
             finally
             {
-                host = null;
+                HOST = null;
                 this.Dispatcher.Invoke(new Action(SetEnabledState));
             }
         }
@@ -148,7 +148,7 @@ namespace ComicRackWebViewer
             mre.Set();
         }
 
-        private void startServiceButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void StartServiceButtonClick(object sender, System.Windows.RoutedEventArgs e)
         {
             if (IsCurrentlyRunningAsAdmin())
             {
@@ -163,12 +163,12 @@ namespace ComicRackWebViewer
             }
         }
 
-        private void stopServiceButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void StopServiceButtonClick(object sender, System.Windows.RoutedEventArgs e)
         {
             StopService();
         }
 
-        private bool IsCurrentlyRunningAsAdmin()
+        private static bool IsCurrentlyRunningAsAdmin()
         {
             bool isAdmin = false;
             WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
@@ -181,13 +181,13 @@ namespace ComicRackWebViewer
             return isAdmin;
         }
 
-        private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
+        private void CheckBoxChecked1(object sender, RoutedEventArgs e)
         {
             IPAddress[] localIPs = Dns.GetHostAddresses(Dns.GetHostName());
             addressTextBox.IsEnabled = false;
         }
 
-        private void bindAll_Unchecked_1(object sender, RoutedEventArgs e)
+        private void BindAllUnchecked1(object sender, RoutedEventArgs e)
         {
             addressTextBox.IsEnabled = true;
         }

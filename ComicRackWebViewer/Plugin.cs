@@ -7,8 +7,8 @@ namespace ComicRackWebViewer
     public static class Plugin
     {
         internal static IApplication Application;
-        private static WebServicePanel panel;
-        private static Version requiredVersion = new Version(0, 9, 153);
+        private static WebServicePanel PANEL;
+        private static readonly Version RequiredVersion = new Version(0, 9, 153);
 
         public static void Run(IApplication app)
         {
@@ -16,17 +16,17 @@ namespace ComicRackWebViewer
             {
                 Application = app;
                 var comicVersion = new Version(app.ProductVersion);
-                if (comicVersion < requiredVersion)
+                if (comicVersion < RequiredVersion)
                 {
-                    MessageBox.Show("ComicRack version required: " + requiredVersion);
+                    MessageBox.Show("ComicRack version required: " + RequiredVersion);
                     return;
                 }
-                if (panel == null)
+                if (PANEL == null)
                 {
-                    panel = new WebServicePanel();
-                    panel.Closed += new EventHandler(panel_Closed);
+                    PANEL = new WebServicePanel();
+                    PANEL.Closed += new EventHandler(panel_Closed);
                 }
-                panel.ShowDialog();
+                PANEL.ShowDialog();
             }
             catch (Exception e)
             {
@@ -40,16 +40,16 @@ namespace ComicRackWebViewer
             {
                 Application = app;
                 var comicVersion = new Version(app.ProductVersion);
-                if (comicVersion < requiredVersion)
+                if (comicVersion < RequiredVersion)
                 {
-                    MessageBox.Show("ComicRack version required: " + requiredVersion);
+                    MessageBox.Show("ComicRack version required: " + RequiredVersion);
                     return;
                 }
-                if (panel == null)
+                if (PANEL == null)
                 {
-                    panel = new WebServicePanel();
+                    PANEL = new WebServicePanel();
                 }
-                panel.StartService();
+                PANEL.StartService();
             }
             catch (Exception e)
             {
@@ -59,18 +59,18 @@ namespace ComicRackWebViewer
 
         static void panel_Closed(object sender, EventArgs e)
         {
-            panel = null;
+            PANEL = null;
         }
 
         [STAThread]
         public static void Main()
         {
-            if (panel == null)
+            if (PANEL == null)
             {
-                panel = new WebServicePanel();
-                panel.Closed += new EventHandler(panel_Closed);
+                PANEL = new WebServicePanel();
+                PANEL.Closed += new EventHandler(panel_Closed);
             }
-            panel.ShowDialog();
+            PANEL.ShowDialog();
         }
 
     }

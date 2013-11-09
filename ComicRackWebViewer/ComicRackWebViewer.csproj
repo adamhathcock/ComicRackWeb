@@ -41,19 +41,19 @@
   <ItemGroup>
     <Reference Include="ComicRack">
       <HintPath>..\..\..\..\..\..\Program Files\ComicRack\ComicRack.exe</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ComicRack.Engine">
       <HintPath>..\..\..\..\..\..\Program Files\ComicRack\ComicRack.Engine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ComicRack.Plugins">
       <HintPath>..\..\..\..\..\..\Program Files\ComicRack\ComicRack.Plugins.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="cYo.Common">
       <HintPath>..\..\..\..\..\..\Program Files\ComicRack\cYo.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Linq2Rest, Version=3.3.2.0, Culture=neutral, PublicKeyToken=73a6c4cf8c87a30e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Linq2Rest.3.3.2.0\lib\Net40\Linq2Rest.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Nancy, Version=0.21.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -77,14 +77,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Razor.Unofficial">
-      <HintPath>..\packages\System.Web.Razor.Unofficial.2.0.2\lib\net40\System.Web.Razor.Unofficial.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
